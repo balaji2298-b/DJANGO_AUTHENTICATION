@@ -3,12 +3,13 @@
 		<title>Authentication</title>
 		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"/>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
-		<style>
-      body{
-        background-color: lightgreen;
-      }
+	<style>
+	      body{
+	        background-color: lightgreen;
+	      }
             h1{
             	text-align: center;
             	color: red;
@@ -52,25 +53,43 @@
               margin-left: 1000px;
               margin-bottom: 100px;
             }
-		</style>
+	    .fa-eye{
+              position: absolute;
+              top: 49%;
+              right: 36%;
+              cursor: pointer;
+              font-size: 33px;
+            }
+	</style>
 	
-        <form action="nice" method="POST">
+        <form action="nice" method="POST" autocomplete="off">
         {% csrf_token %}
         	<h1>SIGN UP</h1>
-        
-
-        	
         	<label>User Name:</label>
-        	<input type="text" name="username" style="width:100%;"class="form-control">
+        	<input type="text" name="username" style="width:100%;" class="form-control" required>
         	
         	<label>Password:</label>
-        	<input type="password" name="password"  style="width:100%;"class="form-control">
+        	<input type="password" name="password" id="password" style="width:100%;" class="form-control" required>
+		<i class="fa fa-eye" id="show-password"></i>
         	
           <center><label class="text-danger">{{msg}}</label></center>
         	
         	<button>Submit</button>
 
         </form>
+	<script>
+        const showPassword = document.querySelector 
+        ("#show-password");
+        const passwordField = document.querySelector
+        ("#password");
+
+        showPassword.addEventListener("click", function(){
+          this.classList.toggle("fa-eye-slash");
+          const type = passwordField.getAttribute("type")
+          === "password" ? "text" : "password";
+          passwordField.setAttribute("type",type);
+        })
+        </script>
       </body>
     </html>
       
