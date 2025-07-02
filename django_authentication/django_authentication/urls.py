@@ -23,4 +23,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('login', views.login, name='login'),
     path('nice', views.nice, name='nice'),
+    path('forgotpassword/', views.forgotpassword, name='forgotpassword'),
 ]
