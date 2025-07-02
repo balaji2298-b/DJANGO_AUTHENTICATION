@@ -23,7 +23,7 @@
             	text-align: left;
             	background-color: yellow;
             	border-radius: 20px;
-              margin-top: 100PX;
+                margin-top: 100PX;
             }
             input {
             	width: 200%;
@@ -71,9 +71,14 @@
         	<label>Password:</label>
         	<input type="password" name="password" id="password" style="width:100%;" class="form-control" required>
 		<i class="fa fa-eye" id="show-password"></i>
+		{% if messages %}
+            	  {% for message in messages %}
+              		  <div class="alert alert-success text-center">{{ message }}</div>
+             	  {% endfor %}
+          	{% endif %}
         	
           <center><label class="text-danger">{{msg}}</label></center>
-        	
+          <a href="forgotpassword">forgotpassword</a>	
         	<button>Submit</button>
 
         </form>
