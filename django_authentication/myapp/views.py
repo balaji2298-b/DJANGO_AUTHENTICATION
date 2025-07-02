@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from myapp.models import Hello
-
+from django.contrib import messages
 
 def index(request):
 	if request.method == 'POST':
@@ -21,4 +21,18 @@ def nice(request):
 		else:
 			context = {'msg': 'Invalid username or password'}
 			return render(request,'login.html',context)
+
+def forgotpassword(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        new_password = request.POST['new_password']
+        try:
+            user = Hello.objects.get(username=username)
+            user.password = new_password
+            user.save()
+            messages.success(request, 'Password successfully changed!')
+            return redirect('login')  # Assuming 'login' is the name of your login URL
+        except Hello.DoesNotExist:
+            return render(request, 'forgotpassword.html', {'msg': 'Username not found'})
+    return render(request, 'forgotpassword.html')
 
